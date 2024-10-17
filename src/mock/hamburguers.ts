@@ -1,10 +1,50 @@
 import { Category } from "../models/Category";
 import { Item } from "../models/Item";
+const illustrationUrl = "src/assets/hamburguer.jpeg";
 
-const item1 = new Item("Cheeseburger", 15, true, "Hambúrguer com queijo cheddar, alface e tomate");
-const item2 = new Item("Bacon Burger", 18, true, "Hambúrguer com queijo, bacon, alface e tomate");
-const item3 = new Item("Veggie Burger", 17, true, "Hambúrguer vegetariano com queijo, alface, tomate e cebola");
-const item4 = new Item("Double Burger", 25, true, "Hambúrguer duplo com queijo, alface, tomate e picles");
-const item5 = new Item("Chicken Burger", 16, true, "Hambúrguer de frango empanado com queijo, alface e maionese");
+const item1 = new Item(
+  "Cheeseburger",
+  15,
+  true,
+  ["Pão", "Hambúrguer de carne", "Queijo cheddar", "Alface", "Tomate", "Maionese"],
+  "Hambúrguer clássico com queijo",
+  illustrationUrl
+);
+
+const item2 = new Item(
+  "Bacon Burger",
+  18,
+  true,
+  ["Pão", "Hambúrguer de carne", "Bacon", "Queijo", "Alface", "Tomate", "Molho especial"],
+  "Hambúrguer com bacon crocante",
+  illustrationUrl
+);
+
+const item3 = new Item(
+  "Veggie Burger",
+  17,
+  true,
+  ["Pão integral", "Hambúrguer vegetariano", "Queijo", "Alface", "Tomate", "Cebola roxa", "Maionese vegana"],
+  "Hambúrguer vegetariano delicioso",
+  illustrationUrl
+);
+
+const item4 = new Item(
+  "Double Burger",
+  25,
+  true,
+  ["Pão", "Dois hambúrgueres de carne", "Queijo cheddar", "Picles", "Cebola caramelizada", "Molho especial"],
+  "Hambúrguer duplo para matar a fome",
+  illustrationUrl
+);
+
+const item5 = new Item(
+  "Chicken Burger",
+  16,
+  true,
+  ["Pão", "Frango empanado", "Queijo", "Alface", "Maionese", "Picles"],
+  "Hambúrguer de frango empanado",
+  illustrationUrl
+);
 
 export const categoryHamburguer = new Category("Hambúrguer", [item1, item2, item3, item4, item5]);

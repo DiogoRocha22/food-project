@@ -7,7 +7,7 @@ type Props = {
 
 export default function Foods({category}: Props) {
   return (
-    <div className="grid grid-cols-1 gap-2 sm:gap-4 sm:grid-cols-2">
+    <div className="grid grid-cols-1 sm:gap-4 sm:grid-cols-2">
       {category.getItems().map((item, index) => (
         <FoodCard key={index} item={item} />
       ))}

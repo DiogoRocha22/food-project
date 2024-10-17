@@ -1,16 +1,18 @@
 export class Item {
   private name: string;
   private price: number;
+  private ingredients: string []
   private active: boolean;
   private description: string;
   private illustration: string;
 
-  constructor(name: string, price: number, active: boolean, description?: string, illustration?:string) {
+  constructor(name: string, price: number, active: boolean, ingredients: string[], illustration?:string, description?: string) {
     this.name = name;
     this.price = price;
     this.active = active;
     this.description = description || "";
     this.illustration = illustration || "";
+    this.ingredients = ingredients || [];
   }
 
   public getName(): string {
@@ -33,6 +35,10 @@ export class Item {
     return this.illustration;
   }
 
+  public getIngredients(): string []{
+    return this.ingredients;
+  }
+
   public setName(name: string): void {
     this.name = name;
   }
@@ -51,6 +57,10 @@ export class Item {
 
   public setIllustration(illustration: string): void{
     this.illustration = illustration;
+  }
+
+  public setIngredients(ingredients: string []){
+    this.ingredients = ingredients;
   }
 
   public toggleActive(): void {
