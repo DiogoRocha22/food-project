@@ -28,7 +28,7 @@ export default function Banner() {
   };
 
   return (
-    <div className="relative w-full h-auto overflow-hidden">
+    <div className="relative w-full h-auto overflow-hidden rounded-2xl">
       <div 
         className="flex transition-transform duration-1000" 
         style={{ transform: `translateX(-${currentIndex * 100}%)` }}

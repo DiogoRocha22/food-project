@@ -1,8 +1,8 @@
 import { Category } from "../models/Category";
-import { Item } from "../models/Item";
+import { Food } from "../models/Food";
 const illustrationUrl = "src/assets/hamburguer.jpeg";
 
-const item1 = new Item(
+const item1 = new Food(
   "Cheeseburger",
   15,
   true,
@@ -11,7 +11,7 @@ const item1 = new Item(
   illustrationUrl
 );
 
-const item2 = new Item(
+const item2 = new Food(
   "Bacon Burger",
   18,
   true,
@@ -20,7 +20,7 @@ const item2 = new Item(
   illustrationUrl
 );
 
-const item3 = new Item(
+const item3 = new Food(
   "Veggie Burger",
   17,
   true,
@@ -29,7 +29,7 @@ const item3 = new Item(
   illustrationUrl
 );
 
-const item4 = new Item(
+const item4 = new Food(
   "Double Burger",
   25,
   true,
@@ -38,7 +38,7 @@ const item4 = new Item(
   illustrationUrl
 );
 
-const item5 = new Item(
+const item5 = new Food(
   "Chicken Burger",
   16,
   true,

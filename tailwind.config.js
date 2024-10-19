@@ -6,10 +6,10 @@ export default {
   theme: {
     extend: {
       backgroundColor:  {
-        "primary": "#b31111"
+        "primary": "#F1393C"
       } 
     },
   },
-  plugins: [require("daisyui")],
+  plugins: [],
 }
 

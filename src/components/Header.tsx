@@ -1,9 +1,12 @@
+import { IoSearch } from "react-icons/io5";
+import { HiMenuAlt1 } from "react-icons/hi";
+
 export default function Header() {
   return (
-    <header className="bg-primary w-full flex z-50 justify-between p-5 text-white sticky top-0">
-      <h4>Logo</h4>
+    <header className="bg-primary w-full flex z-50 justify-between items-center p-3 text-white sticky top-0 ">
+      <HiMenuAlt1 size={40}/>
 
-      <h4>Menu</h4>
+      <IoSearch size={30} color="#ffffff" fill="#ffffff"/>
     </header>
   )
 }

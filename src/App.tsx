@@ -1,8 +1,7 @@
 import Banner from "./components/Banner";
 import CategorySelector from "./components/CategorySelector";
-import Foods from "./components/Foods";
 import Header from "./components/Header";
-import SearchBar from "./components/SearchBar";
+import ItemGroup from "./components/ItemGroup";
 import { categoryHamburguer } from "./mock/hamburguers";
 
 
@@ -11,17 +10,20 @@ export default function App() {
     <div>
       <Header/>
 
-      <Banner/>
-      <section className="flex w-full items-center justify-center py-3">
-        <SearchBar/>
-      </section>
-      
-      <main>
+      <main className="pb-4">
+        <h2 className="text-2xl font-extrabold p-4">Bem vindo ao Nosso <br /> Restaurante!</h2>
         <CategorySelector />
-        <div className="py-3">
-          <Foods category={categoryHamburguer}/>
+
+        <section className="py-4 px-5">
+          <Banner/>
+        </section>
+        <div className="flex flex-col gap-4">
+          <ItemGroup category={categoryHamburguer}/>
+          <ItemGroup category={categoryHamburguer}/>
+          <ItemGroup category={categoryHamburguer}/>
         </div>
       </main>
+      
     </div>
   )
 }

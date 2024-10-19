@@ -1,11 +1,13 @@
+import CategoryLink from "./CategoryLink";
+
 export default function CategorySelector() {
   return (
-    <nav className="bg-primary text-white">
-      <ul className="flex justify-between list-none overflow-x-auto text-nowrap h-full">
-        <li className="border-x border-white h-full p-3 w-full">Hamburguers</li>
-        <li className="border-x border-white h-full p-3 w-full">Pizzas</li>
-        <li className="border-x border-white h-full p-3 w-full">Doces e Sobremesas</li>
-        <li className="border-x border-white h-full p-3 w-full">Petiscos</li>
+    <nav className="sticky top-16 text-slate-700 text-opacity-80 bg-slate-50 z-50">
+      <ul className="flex justify-start list-none overflow-x-auto text-nowrap h-full">
+        <CategoryLink active={true} text="Hamburguer"/>
+        <CategoryLink text="Pizzas"/>
+        <CategoryLink text="Doces e Sobremesas" />
+        <CategoryLink text="Petiscos" />
       </ul>
     </nav>
   )
