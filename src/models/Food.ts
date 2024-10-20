@@ -4,6 +4,7 @@ export class Food extends Item {
   private ingredients: string[];
 
   constructor(
+    id: number,
     name: string, 
     price: number, 
     active: boolean, 
@@ -11,7 +12,7 @@ export class Food extends Item {
     illustration?: string, 
     description?: string
   ) {
-    super(name, price, active, illustration, description);
+    super(id, name, price, active, illustration, description);
     this.ingredients = ingredients;
   }
 

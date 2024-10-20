@@ -1,11 +1,13 @@
 export class Item {
+  private id: number;
   private name: string;
   private price: number;
   private active: boolean;
   private description: string;
   private illustration: string;
 
-  constructor(name: string, price: number, active: boolean, illustration?:string, description?: string) {
+  constructor(id: number, name: string, price: number, active: boolean, illustration?:string, description?: string) {
+    this.id = id;
     this.name = name;
     this.price = price;
     this.active = active;
@@ -31,6 +33,10 @@ export class Item {
   
   public getIllustration(): string {
     return this.illustration;
+  }
+
+  public getId(): number {
+    return this.id;
   }
 
   public setName(name: string): void {

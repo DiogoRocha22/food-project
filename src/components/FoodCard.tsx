@@ -1,20 +1,12 @@
 import { Item } from '../models/Item'
 import hamburguer from '../assets/hamburguer.jpeg'
-import { Food } from '../models/Food'
+import { getIngredients } from '../utils/getIngredients'
 
 type Props = {
   item: Item
 }
 
 export default function FoodCard({ item }: Props) {
-  
-  function getIngredients(){
-    if(item instanceof Food){
-      return item.getIngredients().join(", ").length > 32 
-      ? item.getIngredients().join(", ").slice(0, 32) + "..." 
-      : item.getIngredients().join(", ")
-    }
-  }
 
   return (
     <div className="flex flex-col w-48 h-full border border-slate-400 rounded-xl">
@@ -34,7 +26,7 @@ export default function FoodCard({ item }: Props) {
         <span className="text-md font-bold">{item.getName()}</span>
         <span className="text-md font-bold text-red-500">R${item.getPrice()},00</span>
         <p className="text-xs text-gray-600">
-          {getIngredients()}
+          {getIngredients(item)}
         </p>
       </div>
     </div>
