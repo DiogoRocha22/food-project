@@ -1,6 +1,8 @@
 import { useParams } from 'react-router-dom';
 import { categoryHamburguer } from '../mock/hamburguers';
 import { getIngredients } from '../utils/getIngredients';
+import ExtraItem from '../components/ExtraItem';
+import MainAction from '../components/MainAction';
 
 export default function FoodDetail() {
   const { id } = useParams();
@@ -29,17 +31,31 @@ export default function FoodDetail() {
               rel 30 min
             </span>
           </div>
-          <span>{getIngredients(item)}</span>
+          <span>{getIngredients(item, false)}</span>
         </section>
 
-        <section className='py-6'>
-          <h2 className='font-extrabold text-xl'>Adicionar</h2>
+        <section className='pt-4 flex flex-col gap-5'>
+          <div className='flex flex-col gap-2'>
+            <h2 className='font-extrabold text-xl'>Adicionar</h2>
 
-          <div className='flex flex-col gap-3'>
-            
-          </div>  
+            <div className='flex flex-col gap-3'>
+              {categoryHamburguer.getExtras().map((extra, index) => (
+                <ExtraItem key={index} extra={extra}/>
+              ))}
+            </div>
+          </div>
+
+          <div className='flex flex-col gap-2'>
+            <h2 className='font-extrabold text-xl'>Observação</h2>  
+
+            <div className='w-full'>
+              <textarea className='w-full border border-slate-600 rounded-2xl p-3 focus:outline-none' name="observation" id="observation" placeholder='Sem cebola, sem molho etc..' rows={3}></textarea>
+            </div>
+          </div>
         </section>        
       </main>
+
+      <MainAction children={"Conteudo"} action={() => alert("click")}/>
     </div>
   )
 }

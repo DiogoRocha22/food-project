@@ -1,6 +1,15 @@
+import { Extra } from "../models/Adicional";
 import { Category } from "../models/Category";
 import { Food } from "../models/Food";
 const illustrationUrl = "/src/assets/hamburguer.jpeg";
+
+const adicionaisHamburguer: Extra [] = [
+  { name: "Ovo", price: 2.00 },
+  { name: "Bacon", price: 3.00 },
+  { name: "Queijo", price: 1.00 },
+  { name: "Alface", price: 1.00 },
+  { name: "Tomate", price: 1.00 }
+];
 
 const item1 = new Food(
   1, // ID
@@ -47,4 +56,4 @@ const item5 = new Food(
   illustrationUrl
 );
 
-export const categoryHamburguer = new Category("Hambúrguer", [item1, item2, item3, item4, item5]);
+export const categoryHamburguer = new Category("Hambúrguer", [item1, item2, item3, item4, item5], adicionaisHamburguer);
