@@ -1,11 +1,26 @@
-import { Extra } from '../models/Adicional'
+import { useState } from 'react'
+import { Extra } from '../models/Extra'
 import Incrementer from './Incrementer'
 
 type Props = {
-  extra: Extra
+  extra: Extra,
+  updateExtras: (value: Extra) => void
 }
 
-export default function ExtraItem({extra}: Props) {
+export default function ExtraItem({extra, updateExtras}: Props) {
+  const [itemAmount, setAmount] = useState(0)
+  extra["quantity"] = itemAmount;
+  console.log(extra)
+
+  function addItem(){
+    setAmount(prevAmount => prevAmount + 1)
+    updateExtras(extra)
+  }
+  function removeItem(){
+    setAmount(prevAmount => prevAmount - 1)
+    updateExtras(extra)
+  }
+
   return (
     <div className='flex justify-between items-center'>
       <div className='flex gap-2'>
@@ -19,7 +34,7 @@ export default function ExtraItem({extra}: Props) {
         </div>
       </div>
 
-      <Incrementer />
+      <Incrementer amount={itemAmount} addItem={addItem} removeItem={removeItem}/>
     </div>
   )
 }

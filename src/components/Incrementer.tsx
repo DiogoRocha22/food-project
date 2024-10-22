@@ -1,13 +1,17 @@
-import { useState } from "react";
+type Props = {
+  removeItem: () => void,
+  addItem: () => void,
+  amount: number
+}
 
-export default function Incrementer() {
-  const [amount, setAmount] = useState(0);
-
+export default function Incrementer({removeItem, addItem, amount}: Props) {
   return (
     <div className="flex gap-2 items-center">
       <button
         onClick={() => {
-          setAmount(amount - 1);
+          if(amount > 0) {
+            removeItem()
+          }
         }}
         className="w-8 h-8 flex justify-center items-center rounded-full bg-primary text-black font-extrabold"
       >
@@ -16,7 +20,7 @@ export default function Incrementer() {
       <span>{amount}</span>
       <button
         onClick={() => {
-          setAmount(amount + 1);
+          addItem()
         }}
         className="w-8 h-8 flex justify-center items-center rounded-full bg-primary text-black font-extrabold"
       >

@@ -1,4 +1,4 @@
-import { Extra } from "../models/Adicional";
+import { Extra } from "../models/Extra";
 import { Category } from "../models/Category";
 import { Food } from "../models/Food";
 const illustrationUrl = "/src/assets/hamburguer.jpeg";

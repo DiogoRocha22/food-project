@@ -1,6 +1,7 @@
 import { Item } from '../models/Item'
 import hamburguer from '../assets/hamburguer.jpeg'
 import { getIngredients } from '../utils/getIngredients'
+import { Link } from 'react-router-dom'
 
 type Props = {
   item: Item
@@ -9,7 +10,7 @@ type Props = {
 export default function FoodCard({ item }: Props) {
 
   return (
-    <div className="flex flex-col w-48 h-full border border-slate-400 rounded-xl">
+    <Link to={`/item/${item.getId()}`} className="flex flex-col w-48 h-full border border-slate-400 rounded-xl">
       <div className="flex-none w-40 h-40 flex items-center justify-center bg-black text-white rounded-t-lg">
         {item.getIllustration() ? (
           <img
@@ -29,6 +30,6 @@ export default function FoodCard({ item }: Props) {
           {getIngredients(item)}
         </p>
       </div>
-    </div>
+    </Link>
   )
 }

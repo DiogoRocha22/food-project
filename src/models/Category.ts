@@ -1,4 +1,4 @@
-import { Extra } from "./Adicional";
+import { Extra } from "./Extra";
 import { Item } from "./Item";
 
 export class Category{
