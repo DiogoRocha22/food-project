@@ -5,6 +5,7 @@ import ExtraItem from '../components/ExtraItem';
 import MainAction from '../components/MainAction';
 import { useState, useEffect } from 'react';
 import { Extra } from '../models/Extra';
+import { OrderItem } from '../models/OrderItem';
 
 export default function FoodDetail() {
   const { id } = useParams();
@@ -15,31 +16,44 @@ export default function FoodDetail() {
 
   useEffect(() => {
     if (item) {
-      setSelectedExtras([]); // Reinicia os extras selecionados quando o item mudar
+      setSelectedExtras([]); 
     }
   }, [item]);
   
   function updateExtras(extra: Extra) {
     setSelectedExtras(prevExtras => {
       const isExtraSelected = prevExtras.find(e => e.name === extra.name);
-
+  
       if (!isExtraSelected) {
-        return [...prevExtras, extra];  
+        return [...prevExtras, { ...extra, quantity: 1 }];
       } else {
-        return prevExtras.map(e => 
-          e.name === extra.name ? { ...e, quantity: e.quantity + 1 } : e
+        const updatedExtras = prevExtras.map(e => 
+          e.name === extra.name ? { ...e, quantity: extra.quantity } : e
         );
+  
+        return updatedExtras.filter(e => e.quantity > 0);
       }
     });
   }
+  
+  function saveOrderData(){
+    const itemPrice = item?.getPrice();
+    if (!itemPrice){
+      throw new Error("Valor do pedido invalido")
+    } 
+    const order = new OrderItem(itemPrice, selectedExtras)
+    localStorage.setItem("order-item", JSON.stringify(order))
+  }
 
   useEffect(() => {
-    const total = selectedExtras.reduce((sum, extra) => sum + (extra.price * (extra.quantity || 1)), 0);
+    const total = selectedExtras.reduce((sum, extra) => sum + (extra.price * extra.quantity), item?.getPrice() || 0);
     setOrderTotal(total);
-  }, [selectedExtras]);
+  }, [selectedExtras, item]);
 
-  if (!item) {
-    return <h2>Item inexistente</h2>;
+  if(!item){
+    return (
+      <h4>Item não encontrado</h4>
+    )
   }
 
   return (
@@ -95,7 +109,7 @@ export default function FoodDetail() {
             <h2>R$ {orderTotal},00</h2>
           </div>
         } 
-        action={() => alert("click")}
+        action={() => saveOrderData()}
       />
     </div>
   );

@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Extra } from '../models/Extra'
 import Incrementer from './Incrementer'
 
@@ -14,12 +14,14 @@ export default function ExtraItem({extra, updateExtras}: Props) {
 
   function addItem(){
     setAmount(prevAmount => prevAmount + 1)
-    updateExtras(extra)
   }
   function removeItem(){
     setAmount(prevAmount => prevAmount - 1)
-    updateExtras(extra)
   }
+
+  useEffect(() => {
+    updateExtras(extra)
+  }, [itemAmount])
 
   return (
     <div className='flex justify-between items-center'>
