@@ -3,7 +3,7 @@ import { categoryHamburguer } from '../mock/hamburguers';
 import { getIngredients } from '../utils/getIngredients';
 import ExtraItem from '../components/ExtraItem';
 import MainAction from '../components/MainAction';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { Extra } from '../models/Extra';
 import { OrderItem } from '../models/OrderItem';
 
@@ -20,7 +20,7 @@ export default function FoodDetail() {
     }
   }, [item]);
   
-  function updateExtras(extra: Extra) {
+  const updateExtras = useCallback((extra: Extra) => {
     setSelectedExtras(prevExtras => {
       const isExtraSelected = prevExtras.find(e => e.name === extra.name);
   
@@ -34,7 +34,7 @@ export default function FoodDetail() {
         return updatedExtras.filter(e => e.quantity > 0);
       }
     });
-  }
+  }, []);
   
   function saveOrderData(){
     const itemPrice = item?.getPrice();

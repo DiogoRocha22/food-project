@@ -7,21 +7,22 @@ type Props = {
   updateExtras: (value: Extra) => void
 }
 
-export default function ExtraItem({extra, updateExtras}: Props) {
+export default function ExtraItem({ extra, updateExtras }: Props) {
   const [itemAmount, setAmount] = useState(0)
-  extra["quantity"] = itemAmount;
-  console.log(extra)
 
-  function addItem(){
+  function addItem() {
     setAmount(prevAmount => prevAmount + 1)
   }
-  function removeItem(){
-    setAmount(prevAmount => prevAmount - 1)
+
+  function removeItem() {
+    setAmount(prevAmount => (prevAmount > 0 ? prevAmount - 1 : 0))
   }
 
   useEffect(() => {
-    updateExtras(extra)
-  }, [itemAmount])
+    // Cria uma cópia de 'extra' com a nova quantidade e passa para 'updateExtras'
+    const updatedExtra = { ...extra, quantity: itemAmount }
+    updateExtras(updatedExtra)
+  }, [itemAmount, extra, updateExtras])
 
   return (
     <div className='flex justify-between items-center'>
@@ -36,7 +37,7 @@ export default function ExtraItem({extra, updateExtras}: Props) {
         </div>
       </div>
 
-      <Incrementer amount={itemAmount} addItem={addItem} removeItem={removeItem}/>
+      <Incrementer amount={itemAmount} addItem={addItem} removeItem={removeItem} />
     </div>
   )
 }
