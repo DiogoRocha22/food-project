@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { categoryHamburguer } from '../mock/hamburguers';
 import { getIngredients } from '../utils/getIngredients';
 import ExtraItem from '../components/ExtraItem';
@@ -9,6 +9,7 @@ import { OrderItem } from '../models/OrderItem';
 
 export default function FoodDetail() {
   const { id } = useParams();
+  const navigate = useNavigate();
   const item = categoryHamburguer.getItems().find(item => item.getId() === Number(id));
   
   const [orderTotal, setOrderTotal] = useState<number>(0);
@@ -31,7 +32,7 @@ export default function FoodDetail() {
           e.name === extra.name ? { ...e, quantity: extra.quantity } : e
         );
   
-        return updatedExtras.filter(e => e.quantity > 0);
+        return updatedExtras.filter(e => e.quantity! > 0);
       }
     });
   }, []);
@@ -40,13 +41,15 @@ export default function FoodDetail() {
     const itemPrice = item?.getPrice();
     if (!itemPrice){
       throw new Error("Valor do pedido invalido")
-    } 
-    const order = new OrderItem(itemPrice, selectedExtras)
-    localStorage.setItem("order-item", JSON.stringify(order))
+    }
+    const orderStorage: OrderItem[] =  JSON.parse(localStorage.getItem("order-items")!) || []
+    const orderItem = new OrderItem(itemPrice, selectedExtras)
+    orderStorage.push(orderItem)
+    localStorage.setItem("order-items", JSON.stringify(orderStorage))
   }
 
   useEffect(() => {
-    const total = selectedExtras.reduce((sum, extra) => sum + (extra.price * extra.quantity), item?.getPrice() || 0);
+    const total = selectedExtras.reduce((sum, extra) => sum + (extra.price * extra.quantity!), item?.getPrice() || 0);
     setOrderTotal(total);
   }, [selectedExtras, item]);
 
@@ -109,7 +112,10 @@ export default function FoodDetail() {
             <h2>R$ {orderTotal},00</h2>
           </div>
         } 
-        action={() => saveOrderData()}
+        action={() => {
+          saveOrderData()
+          navigate("/")
+        }}
       />
     </div>
   );
